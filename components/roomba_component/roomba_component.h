@@ -13,7 +13,12 @@ class RoombaComponent : public sensor::Sensor, public PollingComponent, public u
   void update() override;
   void loop() override;
   void dump_config() override;
+  void set_battery_sensor(sensor::Sensor *sensor) {
+    battery_sensor = sensor;
+  }
+protected:
+  sensor::Sensor *battery_sensor;
 };
 
-}  // namespace empty_uart_sensor
+}  // namespace roomba_component
 }  // namespace esphome

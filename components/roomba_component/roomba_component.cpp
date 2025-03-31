@@ -11,7 +11,9 @@ void RoombaComponent::setup() {
 }
 
 void RoombaComponent::update() {
-
+    if (this->battery_sensor != nullptr) {
+        this->battery_sensor->publish_state(100.0);
+    }
 }
 
 void RoombaComponent::loop() {
@@ -19,7 +21,7 @@ void RoombaComponent::loop() {
 }
 
 void RoombaComponent::dump_config(){
-    ESP_LOGCONFIG(TAG, "Empty UART sensor");
+    ESP_LOGCONFIG(TAG, "roomba component");
 }
 
 }  // namespace roomba_component
