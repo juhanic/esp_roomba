@@ -16,7 +16,8 @@ external_components:
 
 sensor:
   - platform: roomba_component
-    name: Roomba component
+    battery_percentage_sensor:
+      name: battery percentage
 
 uart:
   id: uart_bus

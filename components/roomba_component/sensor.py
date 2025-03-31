@@ -1,7 +1,7 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import uart, sensor
-from esphome.const import ICON_EMPTY, UNIT_PERCENT
+from esphome.const import ICON_EMPTY, UNIT_PERCENT, CONF_ID
 
 CONF_BATTERY_SENSOR = "battery_percentage_sensor"
 
@@ -13,7 +13,7 @@ RoombaComponent = roomba_component_ns.class_(
 )
 
 CONFIG_SCHEMA = cv.Schema({
-    cg.GenerateID(): cv.declare_id(RoombaComponent),
+    cv.GenerateID(): cv.declare_id(RoombaComponent),
     cv.Optional(CONF_BATTERY_SENSOR): sensor.sensor_schema(
         unit_of_measurement=UNIT_PERCENT,
         accuracy_decimals=0,
@@ -24,7 +24,7 @@ CONFIG_SCHEMA = cv.Schema({
 
 
 async def to_code(config):
-    var = await sensor.new_sensor(config)
+    var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
     await uart.register_uart_device(var, config)
 
